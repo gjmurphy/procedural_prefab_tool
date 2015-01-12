@@ -24,7 +24,7 @@ public class ProceduralPrefabCreator : EditorWindow
     string              tempString, prefabName, currentName, prefabFolder;
     float               minRotation, maxRotation;
     float               minScale, maxScale;
-    float               tolerence;
+    float               tolerance;
 
     // Show in context menu
     [MenuItem("ShadeForm/Procedural Prefab Creator")]
@@ -87,7 +87,7 @@ public class ProceduralPrefabCreator : EditorWindow
         minScale      = EditorPrefs.GetFloat( "Prcdrl_Min_Scale", 1f );
         maxScale      = EditorPrefs.GetFloat( "Prcdrl_Max_Scale", 1.2f );
 
-        tolerence     = EditorPrefs.GetFloat( "Prcdrl_Tolerence", 1f );
+        tolerance     = EditorPrefs.GetFloat( "Prcdrl_Tolerence", 1f );
 
         prefabName    = EditorPrefs.GetString( "Prcdrl_Name", "Procedural_Prefab_" );
         currentName   = EditorPrefs.GetString( "Prcdrl_Current_Name", null );
@@ -130,7 +130,7 @@ public class ProceduralPrefabCreator : EditorWindow
         EditorPrefs.SetFloat( "Prcdrl_Min_Scale", minScale );
         EditorPrefs.SetFloat( "Prcdrl_Max_Scale", maxScale );
 
-        EditorPrefs.SetFloat( "Prcdrl_Tolerence", tolerence );
+        EditorPrefs.SetFloat( "Prcdrl_Tolerence", tolerance );
 
         EditorPrefs.SetString( "Prcdrl_Name", prefabName );
         EditorPrefs.SetString( "Prcdrl_Current_Name", currentName );
@@ -276,7 +276,7 @@ public class ProceduralPrefabCreator : EditorWindow
             // When searching for a suitable location to spawn a decorator object, the tool will sample several points
             // surrounding the potential location to make sure the base mesh's topology is flat enough for the decorator
             // This variable controls the maximum amount of variance between all the checked point's height.
-            tolerence   = EditorGUILayout.FloatField( "Ground Height Tolerence", tolerence );
+            tolerance   = EditorGUILayout.FloatField( "Ground Height Tolerence", tolerance );
 
             EditorGUI.indentLevel -= 1;
         }
@@ -421,7 +421,7 @@ public class ProceduralPrefabCreator : EditorWindow
                 }
 
             }
-            while ( FindRange( ref yCoordsFrmRaycast ) > tolerence );
+            while ( FindRange( ref yCoordsFrmRaycast ) > tolerance );
 
             // Take average of all surrounding environment y coords for the decorators y coord
             location.y = ( yCoordsFrmRaycast[0] + yCoordsFrmRaycast[1] + yCoordsFrmRaycast[2] + yCoordsFrmRaycast[3] + yCoordsFrmRaycast[4] ) / 5f;
