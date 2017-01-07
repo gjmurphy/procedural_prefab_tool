@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿/*
+** Created by Gabriel Murphy 1/11/2015
+** A tool for Unity game engine. 
+** Used to quickly populate environment meshes with decorator objects and save them as prefabs.
+*/
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
@@ -87,7 +92,7 @@ public class ProceduralPrefabCreator : EditorWindow
         minScale      = EditorPrefs.GetFloat( "Prcdrl_Min_Scale", 1f );
         maxScale      = EditorPrefs.GetFloat( "Prcdrl_Max_Scale", 1.2f );
 
-        tolerance     = EditorPrefs.GetFloat( "Prcdrl_Tolerence", 1f );
+        tolerance     = EditorPrefs.GetFloat( "Prcdrl_Tolerance", 1f );
 
         prefabName    = EditorPrefs.GetString( "Prcdrl_Name", "Procedural_Prefab_" );
         currentName   = EditorPrefs.GetString( "Prcdrl_Current_Name", null );
@@ -130,7 +135,7 @@ public class ProceduralPrefabCreator : EditorWindow
         EditorPrefs.SetFloat( "Prcdrl_Min_Scale", minScale );
         EditorPrefs.SetFloat( "Prcdrl_Max_Scale", maxScale );
 
-        EditorPrefs.SetFloat( "Prcdrl_Tolerence", tolerance );
+        EditorPrefs.SetFloat( "Prcdrl_Tolerance", tolerance );
 
         EditorPrefs.SetString( "Prcdrl_Name", prefabName );
         EditorPrefs.SetString( "Prcdrl_Current_Name", currentName );
@@ -276,7 +281,7 @@ public class ProceduralPrefabCreator : EditorWindow
             // When searching for a suitable location to spawn a decorator object, the tool will sample several points
             // surrounding the potential location to make sure the base mesh's topology is flat enough for the decorator
             // This variable controls the maximum amount of variance between all the checked point's height.
-            tolerance   = EditorGUILayout.FloatField( "Ground Height Tolerence", tolerance );
+            tolerance   = EditorGUILayout.FloatField( "Ground Height Tolerance", tolerance );
 
             EditorGUI.indentLevel -= 1;
         }
